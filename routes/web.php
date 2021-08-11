@@ -21,6 +21,9 @@ Route::get('/', HomeController::class);
 // Here i created a example route to access to 'courses'
 Route::get('cursos', [CursoController::class, 'index']);
 
+// Another way to access the view
+// Route::view('/cursos', 'cursos.index');
+
 // Could create also variables into the routes
 // Route::get('cursos/{curso}', function ($curso) {
 //     return "Bienvenido al curso de $curso";

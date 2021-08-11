@@ -8,6 +8,6 @@ class HomeController extends Controller
 {
     // Manage a unique route
     public function __invoke() {
-        return "Bienvenido a la pagina principal";
+        return view('home');
     }
 }
