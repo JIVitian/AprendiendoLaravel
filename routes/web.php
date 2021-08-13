@@ -33,17 +33,15 @@ Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 // this page not will be access in this way because the third route is read before.
 Route::get('cursos/create', [CursoController::class, 'create'])->name('cursos.create');
 
+Route::post('cursos', [CursoController::class, 'store'])->name('cursos.store');
+
 // After commented the third route, i will be put after the fourd route and now the previous page is accesible
-Route::get('cursos/{id}', [CursoController::class, 'show'])->name('cursos.show');
+Route::get('cursos/{curso}', [CursoController::class, 'show'])->name('cursos.show');
 
 // The variables could be optional, with this sintax
 // Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
 //     return "Bienvenido al curso de $curso" . ($categoria ? ", de la categoría $categoria." : ".");
 // });
+Route::get('cursos/{curso}/edit', [CursoController::class, 'edit'])->name('cursos.edit');
 
-
-
-
-// FROM PREVIOUS VERSIONS OF LARAVEL
-// Route::get('/', 'HomeController');
-// Route::get('cursos', 'CursoController@index');
+Route::put('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');

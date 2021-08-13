@@ -14,7 +14,7 @@ class CursoController extends Controller
         // Take all cursos
         //$cursos = Curso::all();
         // Take 15 records
-        $cursos = Curso::paginate();
+        $cursos = Curso::orderBy('id','desc')->paginate();
 
         // Use the variable named cursos
         return view('cursos.index', compact('cursos'));
@@ -24,12 +24,37 @@ class CursoController extends Controller
     public function create() {
         return view('cursos.create');
     }
+
+    // Control data storage
+    public function store(Request $request) {
+        $curso = new Curso();
+
+        $curso->name = $request->name;
+        $curso->description = $request->description;
+        $curso->category = $request->category;
+
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso);
+    }
     
     // Control a particular page
-    public function show($id) {
-        // return view('cursos.show', ['curso' => $curso]);
-        
-        $curso = Curso::find($id);
+    public function show(Curso $curso) {
         return view('cursos.show', compact('curso'));
+    }
+
+    public function edit(Curso $curso) {
+        return view('cursos.edit', compact('curso'));
+    }
+
+    public function update(Request $request, Curso $curso) {
+        // $cursos = Curso::find($curso->id)->get();
+        $curso->name = $request->name;
+        $curso->description = $request->description;
+        $curso->category = $request->category;
+
+        $curso->save();
+
+        return redirect()->route('cursos.show', $curso);
     }
 }
