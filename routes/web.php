@@ -19,7 +19,7 @@ use App\Http\Controllers\CursoController;
 Route::get('/', HomeController::class);
 
 // Here i created a example route to access to 'courses'
-Route::get('cursos', [CursoController::class, 'index']);
+Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
 // Another way to access the view
 // Route::view('/cursos', 'cursos.index');
@@ -31,10 +31,10 @@ Route::get('cursos', [CursoController::class, 'index']);
 
 // Laravel read the route's list from top to bottom, so if it finds a route sooner, it will read it first
 // this page not will be access in this way because the third route is read before.
-Route::get('cursos/create', [CursoController::class, 'create']);
+Route::get('cursos/create', [CursoController::class, 'create'])->name('cursos.create');
 
 // After commented the third route, i will be put after the fourd route and now the previous page is accesible
-Route::get('cursos/{curso}', [CursoController::class, 'show']);
+Route::get('cursos/{id}', [CursoController::class, 'show'])->name('cursos.show');
 
 // The variables could be optional, with this sintax
 // Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
