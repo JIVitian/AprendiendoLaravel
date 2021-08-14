@@ -12,9 +12,29 @@
 
         @method('put')
 
-        <input type="text" name="name" placeholder="Nombre" value="{{ $curso->name }}"><br>
-        <textarea name="description" rows="5" placeholder="Descripción">{{ $curso->description }}</textarea><br>
-        <input type="text" name="category" placeholder="Categoria" value="{{ $curso->category }}"<br>
+        <input type="text" name="name" placeholder="Nombre" value="{{ old('name', $curso->name) }}"><br>
+
+        @error('name')
+            <small>*{{ $message }}</small>
+            <br>
+            <br>
+        @enderror
+
+        <textarea name="description" rows="5" placeholder="Descripción">{{ old('description', $curso->description) }}</textarea><br>
+
+        @error('description')
+            <small>*{{ $message }}</small>
+            <br>
+            <br>
+        @enderror
+
+        <input type="text" name="category" placeholder="Categoria" value="{{ old('category', $curso->category) }}"><br>
+
+        @error('category')
+            <small>*{{ $message }}</small>
+            <br>
+            <br>
+        @enderror
 
         <button type="submit">Actualizar</button>
     </form>

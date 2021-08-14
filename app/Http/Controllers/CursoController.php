@@ -27,6 +27,12 @@ class CursoController extends Controller
 
     // Control data storage
     public function store(Request $request) {
+        $request->validate([
+            'name' => 'required|max:20',
+            'description' => 'required|min:10',
+            'category' => 'required'
+        ]);
+
         $curso = new Curso();
 
         $curso->name = $request->name;
@@ -48,7 +54,12 @@ class CursoController extends Controller
     }
 
     public function update(Request $request, Curso $curso) {
-        // $cursos = Curso::find($curso->id)->get();
+        $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'category' => 'required'
+        ]);
+
         $curso->name = $request->name;
         $curso->description = $request->description;
         $curso->category = $request->category;
