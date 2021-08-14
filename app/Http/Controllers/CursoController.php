@@ -13,7 +13,7 @@ class CursoController extends Controller
     public function index()
     {
 
-        // Take all curses
+        // Take all courses
         //$cursos = Curso::all();
         // Take 15 records
         $cursos = Curso::orderBy('id', 'desc')->paginate();
@@ -42,13 +42,13 @@ class CursoController extends Controller
         return view('cursos.show', compact('curso'));
     }
 
-    // Edit a curse
+    // Edit a course
     public function edit(Curso $curso)
     {
         return view('cursos.edit', compact('curso'));
     }
 
-    // Update a curse
+    // Update a course
     public function update(Request $request, Curso $curso)
     {
         $request->validate([
@@ -62,6 +62,7 @@ class CursoController extends Controller
         return redirect()->route('cursos.show', $curso);
     }
 
+    // Delete a course
     public function destroy(Curso $curso)
     {
         $curso->delete();
