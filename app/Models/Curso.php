@@ -11,4 +11,8 @@ class Curso extends Model
 
     // To be able to call the model's table with another name
     // protected $table = "users";
+
+    // 
+    // protected $fillable = ['name', 'description', 'category'];
+    protected $guarded = [];
 }

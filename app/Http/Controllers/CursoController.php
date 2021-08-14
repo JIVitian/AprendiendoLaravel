@@ -13,7 +13,7 @@ class CursoController extends Controller
     public function index()
     {
 
-        // Take all cursos
+        // Take all curses
         //$cursos = Curso::all();
         // Take 15 records
         $cursos = Curso::orderBy('id', 'desc')->paginate();
@@ -31,14 +31,7 @@ class CursoController extends Controller
     // Control data storage
     public function store(StoreCursoRequest $request)
     {
-
-        $curso = new Curso();
-
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->category = $request->category;
-
-        $curso->save();
+        $curso = Curso::create($request->all());
 
         return redirect()->route('cursos.show', $curso);
     }
@@ -49,11 +42,13 @@ class CursoController extends Controller
         return view('cursos.show', compact('curso'));
     }
 
+    // Edit a curse
     public function edit(Curso $curso)
     {
         return view('cursos.edit', compact('curso'));
     }
 
+    // Update a curse
     public function update(Request $request, Curso $curso)
     {
         $request->validate([
@@ -61,12 +56,8 @@ class CursoController extends Controller
             'description' => 'required',
             'category' => 'required'
         ]);
-
-        $curso->name = $request->name;
-        $curso->description = $request->description;
-        $curso->category = $request->category;
-
-        $curso->save();
+        
+        $curso->update($request->all());
 
         return redirect()->route('cursos.show', $curso);
     }
