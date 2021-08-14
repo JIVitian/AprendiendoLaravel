@@ -16,6 +16,8 @@ use App\Http\Controllers\CursoController;
 */
 
 // The controller search the __invoke method
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
 Route::resource('cursos', CursoController::class);
+
+Route::view('nosotros', 'nosotros')->name('nosotros');
