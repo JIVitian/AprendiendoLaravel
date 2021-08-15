@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
 use App\Mail\ContactanosMailable;
 use Illuminate\Support\Facades\Mail;
+use App\Http\Controller0\ContactanosController;
+use App\Http\Controllers\ContactanosController as ControllersContactanosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,8 +26,6 @@ Route::resource('cursos', CursoController::class);
 
 Route::view('nosotros', 'nosotros')->name('nosotros');
 
-Route::get('contactanos', function () {
-    $correo = new ContactanosMailable;
-    Mail::to('jivitian@gmail.com')->send($correo);
-    return "Mensaje enviado";
-});
+Route::get('contactanos', [ControllersContactanosController::class, 'index'])->name('contactanos.index');
+
+Route::post('contactanos', [ControllersContactanosController::class, 'store'])->name('contactanos.store');

@@ -149,7 +149,9 @@ return [
     'attributes' => [
         'name' => 'nombre',
         'description' => 'descripción',
-        'category' => 'categoria'
+        'category' => 'categoria',
+        'mail' => 'correo',
+        'message' => 'mensaje'
     ],
 
 ];
