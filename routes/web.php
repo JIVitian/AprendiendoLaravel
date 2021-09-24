@@ -29,3 +29,6 @@ Route::view('nosotros', 'nosotros')->name('nosotros');
 Route::get('contactanos', [ControllersContactanosController::class, 'index'])->name('contactanos.index');
 
 Route::post('contactanos', [ControllersContactanosController::class, 'store'])->name('contactanos.store');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
